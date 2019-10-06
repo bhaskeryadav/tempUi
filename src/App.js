@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import ErrorMessage from "./ui/components/common/error";
+import useGlobalStore from "./hooks/reusable/global.hook";
+import AppRouter from "./ui/components/common/routes";
 
-function App() {
+export const BootApp = props => {
+  const { error, sendHttpRequest } = useGlobalStore();
+  console.log("rendiring boot app", error);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <React.Fragment>
+      {error.isError && <ErrorMessage errorMessage={error.errorMessage} />}
+      <AppRouter>
 
-export default App;
+      </AppRouter>
+    </React.Fragment>
+  );
+};
+
+export default BootApp;
