@@ -38,8 +38,9 @@ const dividerStyle = {borderTop: '1px solid black'}
 
 
 const MessagesCard = (props) => {
-    const { messages, setMessages } = useAllMessages({ url: 'https://api.wikiaboutme.org/message' });
-    console.log(props.height);
+
+    const { messages, setMessages, newMessage } = useAllMessages({ url: 'https://api.wikiaboutme.org/message', publisher: props.publisher });
+    console.log('Rendering >>>>>>>>>>>>>>>>>>>>>>> MessagesCard');
     
     return (
         <Segment style={cardStyle(props)}>
@@ -47,8 +48,9 @@ const MessagesCard = (props) => {
                 Header
             </div>
             <hr style={dividerStyle}></hr>
-            <div style={overFlowStyleAuto(props)} onscroll='alert("Scroll Called")'>
-                {messages.map(m => <Message message={m}></Message>)}
+            <div style={overFlowStyleAuto(props)} >
+                {/* { newMessage && <Message key={newMessage._id} message={newMessage}></Message>} */}
+                {messages.map(m => <Message key={m._id} message={m}></Message>)}
                
                 {props.children}
             </div>
@@ -56,4 +58,4 @@ const MessagesCard = (props) => {
     )
 }
 
-export default MessagesCard;
+export default React.memo(MessagesCard);

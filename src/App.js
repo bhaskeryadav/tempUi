@@ -6,7 +6,7 @@ import AppRouter from "./ui/components/common/routes";
 
 export const BootApp = props => {
   const { error, sendHttpRequest } = useGlobalStore();
-  console.log("rendiring boot app", error);
+  // console.log("rendiring boot app", error);
 
   return (
     <React.Fragment>

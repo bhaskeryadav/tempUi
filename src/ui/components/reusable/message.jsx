@@ -3,24 +3,25 @@ import React from 'react';
 
 const ubuntuFont = {
     fontFamily: 'Ubuntu',
-    fontSize: '13px'
+    fontSize: '12px'
 }
 
 const timeStyle = {
     ...ubuntuFont,
-    fontSize: '12.5px',
+    fontSize: '13px',
     verticalAlign: 'top',
-    paddingRight: '5px'
+    paddingRight: '10px'
 }
 
 const styles = {
-    'DefaultGreen' : { ...ubuntuFont, color: 'orange' },
-    'DefaultRed' : {...ubuntuFont,color:'red'},
-    'DefaultDefault' : {...ubuntuFont,color:'white'}
+    'Green' : { ...ubuntuFont, color: 'orange' },
+    'Red' : {...ubuntuFont,color:'red'},
+    'Default' : {...ubuntuFont,color:'white'}
 }
 
 const Message = (props) => {
-    console.log(props.message.category, props.message.cssClass, props.message.message);
+    console.log('Rendering >>>>>>>>>>>>>>>>>>>>>>> Message');
+    //console.log(props.message.category, props.message.cssClass, props.message.message);
     return (
         <React.Fragment>
             <table>
@@ -29,9 +30,9 @@ const Message = (props) => {
                     <td style={timeStyle}> <div>{moment(Number(props.message.createdAt)).format("HH:mm:ss")}</div> </td>
                     <td>
 
-                    <div style={styles[`${props.message.category}${props.message.cssClass}`]}>
-                {props.message.message}
-            </div>
+                    <div style={styles[`${props.message.cssClass}`]}>
+                            {props.message.message}
+                    </div>
 
                     </td>
                 </tr>
@@ -46,4 +47,4 @@ const Message = (props) => {
 }
 
 
-export default Message;
+export default React.memo(Message);

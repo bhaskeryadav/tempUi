@@ -5,10 +5,18 @@ import { GET } from 'utils/constants';
 let allMessages = [];
 let allMessageListeners = [];
 
-const useAllMessages = ({url}) => {
+const useAllMessages = ({url, publisher}) => {
 
+    console.log("loading useAllMessages******************** ")
     const [ messages, setMessages ] = useState(allMessages);
+    const [ newMessage, setNewMessage ] = useState(undefined);
     const { sendHttpRequest } = useGlobalStore();
+    const updateMessages = useCallback((data)=>{
+        //newMessage && setMessages((oldMessages)=>[newMessage, ...oldMessages]);
+        //setNewMessage(()=>data);
+        setMessages((oldMessages)=>[data, ...oldMessages])
+    },[]);
+    
 
     // TODO : figure out a way to extract this in resuable code
     useEffect(()=>{
@@ -20,15 +28,16 @@ const useAllMessages = ({url}) => {
     },[])
 
     useEffect(()=>{
-        console.log('use All Messages');
+       // console.log('use All Messages');
         sendHttpRequest({
             url,
             method : GET,
             successCallback : (data)=>setMessages(()=>data),
-        })
+        });
+        publisher(updateMessages);
     },[])
 
-    return { messages, setMessages };
+    return { messages, setMessages, newMessage };
 }
 
 export default useAllMessages;

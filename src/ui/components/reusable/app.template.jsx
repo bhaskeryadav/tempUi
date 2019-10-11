@@ -8,6 +8,7 @@ import PrivateRoute from 'ui/components/reusable/private.routes';
 
 const AppTemplate = ({ match }) => {
     // console.log('${match.path}', `${match.path}`)
+    // const {onMessageRecieved} = useMessageChannel();
     return (
         <React.Fragment>
         
