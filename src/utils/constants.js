@@ -10,5 +10,5 @@ export const AUTH_TOKEN = "x-auth";
 export const ACCESS_TOKEN = "a-token";
 
 export const LOGIN_URL = "/";
-export const REDBOX_MESSAGE_URL = "/messages";
+export const REDBOX_MESSAGE_URL = "/redbox";
 

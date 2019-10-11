@@ -19,7 +19,7 @@ const broadcastError = error =>
 
 const useGlobalStore = () => {
   const [error, setError] = useState(initialState);
-  console.log("In Global Store");
+  // console.log("In Global Store");
 
   useEffect(() => {
     listeners.push(setError);
@@ -31,8 +31,15 @@ const useGlobalStore = () => {
 
   const sendHttpRequest = useCallback(
     ({ url, method, requestData, successCallback, errorCallBack, meta }) => {
-      console.log(`${AUTH_TOKEN}`, localStorage.getItem(AUTH_TOKEN));
-      httpCallMethods[method](url, requestData, { [`${AUTH_TOKEN}`]: localStorage.getItem(AUTH_TOKEN) })
+      console.log(`${AUTH_TOKEN}`, localStorage.getItem(AUTH_TOKEN), url);
+      let header = {
+        headers: {
+          "Content-Type": "application/json",
+          from: "app",
+          "x-auth": localStorage.getItem(AUTH_TOKEN)
+        }
+      };
+      httpCallMethods[method](url, requestData, header)
         .then(response => {
           console.log("response", response.data);
           successCallback && successCallback(response.data, meta);

@@ -4,12 +4,14 @@ import SigninForm from "ui/screen/public/signin";
 import PrivateRoute from "ui/components/reusable/private.routes";
 import RedboxMessages from "ui/screen/private/redbox.messages";
 import { LOGIN_URL, REDBOX_MESSAGE_URL } from 'utils/constants';
+import AppTemplate from 'ui/components/reusable/app.template';
+
 
 export const AppRouter = props => {
   return (
     <BrowserRouter>
       <Route exact path={LOGIN_URL} component={SigninForm} />
-      <PrivateRoute path={REDBOX_MESSAGE_URL} component={RedboxMessages} />
+      <PrivateRoute path={REDBOX_MESSAGE_URL} component={AppTemplate} />
     </BrowserRouter>
   );
 };

@@ -5,7 +5,7 @@ const ErrorMessage = props => {
 
   return (
 
-    <Message negative >
+    <Message negative floating >
       <Message.Header>Error</Message.Header>
       <p>{props.errorMessage}</p>
     </Message>

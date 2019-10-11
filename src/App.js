@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import ErrorMessage from "./ui/components/common/error";
 import useGlobalStore from "./hooks/reusable/global.hook";
 import AppRouter from "./ui/components/common/routes";
@@ -10,9 +11,8 @@ export const BootApp = props => {
   return (
     <React.Fragment>
       {error.isError && <ErrorMessage errorMessage={error.errorMessage} />}
-      <AppRouter>
-
-      </AppRouter>
+      <AppRouter></AppRouter>
+      
     </React.Fragment>
   );
 };
