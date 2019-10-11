@@ -1,7 +1,11 @@
-import React from "react";
+import React, {useRef} from "react";
 import { Segment } from "semantic-ui-react";
 import useAllMessages from 'hooks/messages.state/all.news.state';
 import Message from 'ui/components/reusable/message';
+import {TWITTER_SOURCE} from 'utils/constants';
+import TwitterMessage from 'ui/components/reusable/twitter.message';
+import { Transition, config } from "react-spring/renderprops";
+import { Icon } from 'semantic-ui-react'
 
 const headerHeight = 4;
 
@@ -17,7 +21,7 @@ const calculateHeight = (height) => {
     }
     return heightCalculator[`${height}`]();
 }
-const overFlowStyleAuto = ({height}) => ({overflow: 'auto', height:`${calculateHeight(height)}vh`, paddingLeft:'4px' })
+const overFlowStyleAuto = ({height}) => ({overflowY: 'auto',overflowX:'hidden', height:`${calculateHeight(height)}vh`, paddingLeft:'4px' })
 
 const overFlowStyleHidden = {overflow: 'hidden', height:`${headerHeight}vh`, color:'orange' }
 
@@ -36,24 +40,67 @@ const cardStyle = ({ height }) => (
 const dividerStyle = {borderTop: '1px solid black'}
 
 
-
 const MessagesCard = (props) => {
 
-    const { messages, setMessages, newMessage } = useAllMessages({ url: 'https://api.wikiaboutme.org/message', publisher: props.publisher });
-    console.log('Rendering >>>>>>>>>>>>>>>>>>>>>>> MessagesCard');
+    const { messages, isScrolling, showScrollToTop  } = useAllMessages({ url: '/message?region=ALL&category=Default', publisher: props.publisher });
+    console.log('Rendering >>>>>>>>>>>>>>>>>>>>>>> MessagesCard', messages.length);
     
+    const myRef = useRef(null)
+
     return (
         <Segment style={cardStyle(props)}>
             <div style={overFlowStyleHidden}>
                 Header
             </div>
             <hr style={dividerStyle}></hr>
-            <div style={overFlowStyleAuto(props)} >
-                {/* { newMessage && <Message key={newMessage._id} message={newMessage}></Message>} */}
-                {messages.map(m => <Message key={m._id} message={m}></Message>)}
+            <div style={overFlowStyleAuto(props)} 
+            onScroll={event => {
+                event.persist();
+                isScrolling(event);
+              }}
+             
+            >
+                <div  ref={myRef}></div>
+
+                <Transition
+                    items={messages}
+                    keys={message => message._id}
+                    config={{duration : 500}}
+                    from={{ transform: "translate3d(0,-40px,0)" }}
+                    enter={{ transform: "translate3d(0,0px,0)" }}
+                    leave={{ transform: "translate3d(0,-40px,0)" }}
+                >
+                    {m => props => {
+                        // console.log(m.cssClass);
+                        if(m.cssClass === TWITTER_SOURCE){
+                            return (
+                                <div style={props}>
+                                    <TwitterMessage key={m._id} message={m}></TwitterMessage>
+                                </div>
+                            )
+                        }
+                        else 
+                        return (
+                            <div style={props}>
+                                <Message key={m._id} message={m}></Message>
+                            </div>
+                        )
+                    }
+                    }
+                </Transition>
                
                 {props.children}
             </div>
+            
+            {
+            showScrollToTop  && 
+            (
+                <div style={{align:'right'}}>        
+                    <Icon style={{ color: "orange" }} name='angle double up'  size='big' link
+                    onClick={()=> myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })}/>
+                </div>
+            )
+            }  
         </Segment>
     )
 }

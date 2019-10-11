@@ -1,23 +1,7 @@
-import moment from "moment";
 import React from 'react';
+import moment from "moment";
+import {ubuntuFont,timeStyle, styles} from 'styles/message.style';
 
-const ubuntuFont = {
-    fontFamily: 'Ubuntu',
-    fontSize: '12px'
-}
-
-const timeStyle = {
-    ...ubuntuFont,
-    fontSize: '13px',
-    verticalAlign: 'top',
-    paddingRight: '10px'
-}
-
-const styles = {
-    'Green' : { ...ubuntuFont, color: 'orange' },
-    'Red' : {...ubuntuFont,color:'red'},
-    'Default' : {...ubuntuFont,color:'white'}
-}
 
 const Message = (props) => {
     console.log('Rendering >>>>>>>>>>>>>>>>>>>>>>> Message');

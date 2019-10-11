@@ -25,7 +25,7 @@ const RedboxMessages = props => {
         </Grid.Column>
 
         <Grid.Column style={{ paddingLeft: 0, paddingRight: 0 }}>
-        <MessagesCard height={'full'} publisher={onMessageRecieved}> {/* 82vh */}
+        <MessagesCard height={'full'} publisher={onMessageRecieved} > {/* 82vh */}
             
           </MessagesCard>
         </Grid.Column>

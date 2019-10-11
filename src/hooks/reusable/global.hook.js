@@ -31,7 +31,7 @@ const useGlobalStore = () => {
 
   const sendHttpRequest = useCallback(
     ({ url, method, requestData, successCallback, errorCallBack, meta }) => {
-      // console.log(`${AUTH_TOKEN}`, localStorage.getItem(AUTH_TOKEN), url);
+      console.log(`${AUTH_TOKEN}`, localStorage.getItem(AUTH_TOKEN), url);
       let header = {
         headers: {
           "Content-Type": "application/json",
