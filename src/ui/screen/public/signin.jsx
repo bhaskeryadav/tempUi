@@ -9,13 +9,13 @@ import {
   Segment
 } from "semantic-ui-react";
 import { ssoServer, POST, REDBOX_MESSAGE_URL, AUTH_TOKEN } from "utils/constants";
-import useGlobalStore from "hooks/reusable/global.hook";
+import useHttp from "hooks/reusable/http.hook";
 import { withRouter } from "react-router-dom";
 
 var refreshIntervalId;
 
 const SigninForm = props => {
-  const { sendHttpRequest } = useGlobalStore();
+  const { sendHttpRequest } = useHttp();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

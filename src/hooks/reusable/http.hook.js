@@ -6,10 +6,10 @@ const initialState = { isError: false, errorMessage: "" };
 var listeners = [];
 
 const httpCallMethods = {
-  [`${POST}`]: (url, requestData, requestHeaders) =>
+  [`${POST}`]: (url, requestData, requestHeaders,reqparams) =>
     axios.post(url, { ...requestData }, requestHeaders),
-  [`${GET}`]: (url, requestData, requestHeaders) =>
-    axios.get(url, requestHeaders)
+  [`${GET}`]: (url, requestData, requestHeaders, reqParams) =>
+    axios.get(url, {params:reqParams, ...requestHeaders} )
 };
 
 const broadcastError = error =>
@@ -17,7 +17,7 @@ const broadcastError = error =>
     li(p => ({ isError: true, errorMessage: error.message }))
   );
 
-const useGlobalStore = () => {
+const useHttp = () => {
   const [error, setError] = useState(initialState);
   // console.log("In Global Store");
 
@@ -30,7 +30,7 @@ const useGlobalStore = () => {
   }, []);
 
   const sendHttpRequest = useCallback(
-    ({ url, method, requestData, successCallback, errorCallBack, meta }) => {
+    ({ url, method, requestData, successCallback, errorCallBack, meta, reqParams }) => {
       console.log(`${AUTH_TOKEN}`, localStorage.getItem(AUTH_TOKEN), url);
       let header = {
         headers: {
@@ -39,7 +39,7 @@ const useGlobalStore = () => {
           "x-auth": localStorage.getItem(AUTH_TOKEN)
         }
       };
-      httpCallMethods[method](url, requestData, header)
+      httpCallMethods[method](url, requestData, header, reqParams)
         .then(response => {
           // console.log("response", response.data);
           successCallback && successCallback(response.data, meta);
@@ -57,4 +57,4 @@ const useGlobalStore = () => {
   return { sendHttpRequest, error };
 };
 
-export default useGlobalStore;
+export default useHttp;

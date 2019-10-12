@@ -14,3 +14,12 @@ export const LOGIN_URL = "/";
 export const REDBOX_MESSAGE_URL = "/redbox";
 
 export const TWITTER_SOURCE = "twitter";
+
+export const CHANNELS = {
+    IN : {
+
+    },
+    GLOBAL : {
+        
+    }
+}

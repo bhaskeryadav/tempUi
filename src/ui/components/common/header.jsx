@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Input, Menu } from "semantic-ui-react";
-// import { BrowserRouter as Route, Link } from "react-router-dom";
-// import RedboxMessages from 'ui/screen/private/redbox.messages';
+import { Icon } from 'semantic-ui-react'
+import useGlobalStore from 'hooks/reusable/global.store/global.hook';
+import { SHOW_SEARCH_MODAL } from "hooks/reusable/global.store/global.hook.constants";
 
  const Header = () => {
+
+    const { executeActions} = useGlobalStore();
 
     const [currentPage, setCurrentPage] = useState("home");
 
@@ -13,10 +16,7 @@ import { Input, Menu } from "semantic-ui-react";
     //console.log('${match.path}',`${match.path}`)
     return (
      <React.Fragment>
-      
-
-
-
+    
      <Menu
      secondary
      fixed="top"
@@ -38,9 +38,8 @@ import { Input, Menu } from "semantic-ui-react";
        onClick={handleItemClick}
      />
      <Menu.Menu position="right">
-       <Menu.Item>
-         <Input icon="search" placeholder="Search..." />
-       </Menu.Item>
+     <Icon style={{ color: "black" }} name='search'  size='big' link
+                    onClick={()=> {executeActions(SHOW_SEARCH_MODAL)}}/>
        <Menu.Item
          name="logout"
          active={currentPage === "logout"}

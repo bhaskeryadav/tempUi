@@ -19,3 +19,19 @@
     transform: scale(0.9);
     transition: opacity 300ms, transform 300ms;
   }
+
+  .ui .checked .checkbox label {
+    color:#fff;
+  }
+  
+  /* Label of checkbox in search modal set to white*/
+  body > div.ui.page.modals.dimmer.transition.visible.active > div > div > div.ten.wide.computer.column > div > span > div > label {
+    color:#fff;
+  }
+
+  /* highlight Style */
+  body > div.ui.page.modals.dimmer.transition.visible.active > div > div.searchMessage > div > div.fourteen.wide.computer.six.wide.mobile.nine.wide.tablet.column > div > div > span > mark{
+    background-color: transparent;
+    font-size: 15px;
+    color: #39ff14;
+  }

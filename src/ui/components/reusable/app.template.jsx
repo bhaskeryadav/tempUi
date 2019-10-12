@@ -5,6 +5,7 @@ import Footer from 'ui/components/common/footer';
 import RedboxMessages from 'ui/screen/private/redbox.messages'
 import ChatBox from 'ui/screen/private/chat.box';
 import PrivateRoute from 'ui/components/reusable/private.routes';
+import SearchModal from '../common/search.modal';
 
 const AppTemplate = ({ match }) => {
     // console.log('${match.path}', `${match.path}`)
@@ -26,7 +27,7 @@ const AppTemplate = ({ match }) => {
                     component={ChatBox}
                 />
 
-
+                <SearchModal></SearchModal>
                 <Footer></Footer>
                 </Container>
         </React.Fragment>

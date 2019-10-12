@@ -9,7 +9,7 @@ import { Icon } from 'semantic-ui-react'
 
 const headerHeight = 4;
 
-const heights = {
+const heights = {       
     half : 40,
     full : 82
 }
@@ -42,7 +42,10 @@ const dividerStyle = {borderTop: '1px solid black'}
 
 const MessagesCard = (props) => {
 
-    const { messages, isScrolling, showScrollToTop  } = useAllMessages({ url: '/message?region=ALL&category=Default', publisher: props.publisher });
+    const { messages, isScrolling, showScrollToTop  } = useAllMessages({ url: '/message', 
+                                                                        reqParams: {'region':'ALL','category':'Default'},
+                                                                        publisher: props.publisher });
+                                                                        
     console.log('Rendering >>>>>>>>>>>>>>>>>>>>>>> MessagesCard', messages.length);
     
     const myRef = useRef(null)
