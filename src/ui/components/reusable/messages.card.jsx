@@ -42,11 +42,13 @@ const dividerStyle = {borderTop: '1px solid black'}
 
 const MessagesCard = (props) => {
 
-    const { messages, isScrolling, showScrollToTop  } = useAllMessages({ url: '/message', 
-                                                                        reqParams: {'region':'ALL','category':'Default'},
+    const { url, reqParams } = props.category;
+
+    const { messages, isScrolling, showScrollToTop  } = useAllMessages({ url, 
+                                                                        reqParams,
                                                                         publisher: props.publisher });
                                                                         
-    console.log('Rendering >>>>>>>>>>>>>>>>>>>>>>> MessagesCard', messages.length);
+    console.log('Rendering >>>>>>>>>>>>>>>>>>>>>>> MessagesCard', props);
     
     const myRef = useRef(null)
 

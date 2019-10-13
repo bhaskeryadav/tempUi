@@ -11,7 +11,7 @@ export const AppRouter = props => {
   return (
     <BrowserRouter>
       <Route exact path={LOGIN_URL} component={SigninForm} />
-      <PrivateRoute path={REDBOX_MESSAGE_URL} component={AppTemplate} />
+      <PrivateRoute path={`${REDBOX_MESSAGE_URL}/:region`} component={AppTemplate} />
     </BrowserRouter>
   );
 };

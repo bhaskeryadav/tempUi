@@ -9,7 +9,7 @@ const useSearchMessageStore = ({url, reqParams }) => {
 
     const { sendHttpRequest } = useHttp();
     const [searchResult, setSearchResult] = useState([]);
-    const [extraReqParam, setExtraReqParam] = useState({message:'mother'});
+    const [extraReqParam, setExtraReqParam] = useState({});
     const [paginationDetails, setPaginationDetails] = useState({
         pageNo: 0,
         hasMore: true,

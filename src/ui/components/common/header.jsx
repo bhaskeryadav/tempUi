@@ -4,11 +4,14 @@ import { Icon } from 'semantic-ui-react'
 import useGlobalStore from 'hooks/reusable/global.store/global.hook';
 import { SHOW_SEARCH_MODAL } from "hooks/reusable/global.store/global.hook.constants";
 
+const paddingStyle = {
+  paddingTop:'13px', paddingLeft: '10px'
+}
  const Header = () => {
 
     const { executeActions} = useGlobalStore();
 
-    const [currentPage, setCurrentPage] = useState("home");
+    const [currentPage, setCurrentPage] = useState("Messages");
 
     const handleItemClick = (e, { name }) => setCurrentPage(() => name);
 
@@ -16,25 +19,27 @@ import { SHOW_SEARCH_MODAL } from "hooks/reusable/global.store/global.hook.const
     //console.log('${match.path}',`${match.path}`)
     return (
      <React.Fragment>
-    
+       
+ 
      <Menu
      secondary
      fixed="top"
      style={{ overflow: "hidden", background: "#fff", color: "#fff" }}
    >
+   <div style={paddingStyle}>
+     <img src="/images/new-online.gif" style={{width:'25px',height:'18px'}}/>
+   </div>
+      <div style={paddingStyle}>
+        <img src="/images/global-logo.png" style={{width:'90px',height:'15px'}}/>
+      </div>
      <Menu.Item
-       name="home"
-       active={currentPage === "home"}
+       name="Messages"
+       active={currentPage === "Messages"}
        onClick={handleItemClick}
      />
      <Menu.Item
-       name="messages"
-       active={currentPage === "messages"}
-       onClick={handleItemClick}
-     />
-     <Menu.Item
-       name="friends"
-       active={currentPage === "friends"}
+       name="Feeds"
+       active={currentPage === "Feeds"}
        onClick={handleItemClick}
      />
      <Menu.Menu position="right">

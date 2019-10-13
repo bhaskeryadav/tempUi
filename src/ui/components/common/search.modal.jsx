@@ -71,7 +71,7 @@ const SearchModal = ({}) => {
       <Grid.Column computer={10}>
         <Segment style={{padding:'0.8rem 0.8rem', backgroundColor: 'transparent', color:'white'}}>
         {
-                    options.map(op=><span><Checkbox label={op.display} checked={op.checked} style={{color:'#fff'}} />{'\u00A0'}{'\u00A0'}{'\u00A0'}</span>)
+                    options.map(op=><span key={op.display} ><Checkbox label={op.display} checked={op.checked} style={{color:'#fff'}} />{'\u00A0'}{'\u00A0'}{'\u00A0'}</span>)
                   }
                   <span>
         <Checkbox checked={true} label={'twitter'} />
@@ -88,7 +88,7 @@ const SearchModal = ({}) => {
 
             
                   {
-                    searchResult.map(m=><SearchMessage message={m} search={extraReqParam.message}></SearchMessage>)
+                    searchResult.map(m=><SearchMessage key={m._id} message={m} search={extraReqParam.message}></SearchMessage>)
                   }
               {/* {searchResult.map(m=>
               <tr key={m._id}>

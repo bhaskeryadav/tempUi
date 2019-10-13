@@ -9,7 +9,9 @@ const Footer = () => {
             fixed="bottom"
             style={{ overflow: "hidden", background: "#000", color: "#fff" }}
         >
-            Copyright
+           <div style={{paddingTop:'10px', paddingLeft:'90%'}}>
+                Copyright @ 2019.
+           </div>
       </Menu>
     );
 }

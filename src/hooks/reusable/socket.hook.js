@@ -20,6 +20,11 @@ const useMessageChannel = () => {
       
     socket.on('connect', () => {
       //  console.log("got connect",localStorage.getItem("x-auth"));
+        socket.emit('joinChannels',['testJoin']);
+        socket.on('messageArrived', data=>{
+          console.log("Arrived >>>>>>>>>>>>>>>>>>>>>>", data);
+          
+        })
         validateSocketConnection();
       });
   

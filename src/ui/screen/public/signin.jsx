@@ -8,9 +8,11 @@ import {
   Message,
   Segment
 } from "semantic-ui-react";
-import { ssoServer, POST, REDBOX_MESSAGE_URL, AUTH_TOKEN } from "utils/constants";
+import { ssoServer, POST, REDBOX_MESSAGE_URL, AUTH_TOKEN, REDBOX_MESSAGE_SETTING, MESSAGE_SETTING_KEY } from "utils/constants";
 import useHttp from "hooks/reusable/http.hook";
 import { withRouter } from "react-router-dom";
+import useGlobalStore from "hooks/reusable/global.store/global.hook";
+import { SET_REDBOX_MESSAGE_SETTING } from "hooks/reusable/global.store/global.hook.constants";
 
 var refreshIntervalId;
 
@@ -37,7 +39,9 @@ const SigninForm = props => {
         const { [`${AUTH_TOKEN}`]: token, usr_email: email, refreshToken } = data;
         console.log("data returned", token, email);
         localStorage.setItem(AUTH_TOKEN, token);
-        props.history.push(REDBOX_MESSAGE_URL);
+        localStorage.setItem(MESSAGE_SETTING_KEY, REDBOX_MESSAGE_SETTING[`${data.region}`]);
+        // executeActions(SET_REDBOX_MESSAGE_SETTING, REDBOX_MESSAGE_SETTING[`${data.region}`])
+        props.history.push(`${REDBOX_MESSAGE_URL}/${data.region}`);
         refreshIntervalId = setInterval(() => {
           sendHttpRequest({
             url: `${ssoServer}/users/token`,
