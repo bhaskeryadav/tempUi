@@ -35,3 +35,32 @@
     font-size: 15px;
     color: #39ff14;
   }
+
+  /*Header CSS*/
+  #root > div > div > div.ui.secondary.top.fixed.menu{
+    background: black !important;
+    /* box-shadow : 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22) !important; */
+    box-shadow : -4px 3px  rgba(50, 50, 50, 0.75) !important
+  }
+  
+  #root > div > div > div.ui.secondary.top.fixed.menu > a{
+    color: white !important;
+  }
+  
+  #root > div > div > div.ui.secondary.top.fixed.menu > a.active.item{
+    color: gray !important;
+  }
+
+  #root > div > div > div.ui.secondary.top.fixed.menu > div > a{
+    color: white !important;
+  }
+  /*Header CSS*/
+
+  /* Footer CSS */
+
+  #root > div > div > div.ui.secondary.bottom.fixed.menu{
+    box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75) !important;
+  }
+
+  
+  /* Footer CSS */

@@ -38,8 +38,10 @@ import { SHOW_SEARCH_MODAL } from "hooks/reusable/global.store/global.hook.const
        onClick={handleItemClick}
      />
      <Menu.Menu position="right">
-     <Icon style={{ color: "black" }} name='search'  size='big' link
+     <Menu.Item>
+     <Icon style={{ color: "white" }} name='search'  size='large' link 
                     onClick={()=> {executeActions(SHOW_SEARCH_MODAL)}}/>
+                    </Menu.Item>
        <Menu.Item
          name="logout"
          active={currentPage === "logout"}

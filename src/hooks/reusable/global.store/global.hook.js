@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import {HIDE_SEARCH_MODAL,SHOW_SEARCH_MODAL, GET_SEARCH_MODAL} from 'hooks/reusable/global.store/global.hook.constants';
 
 var globalStoreInitialState = {
-    showSearchModal : true,
+    showSearchModal : false,
 };
 
 var globalStoreListeners = [];

@@ -28,7 +28,7 @@ const overFlowStyleHidden = {overflow: 'hidden', height:`${headerHeight}vh`, col
 const cardStyle = ({ height }) => (
     { 
         height: `${heights[height]}vh` , 
-        background: "#202020", 
+        background: "#000", 
         color: '#fff', 
         padding:'0',
         borderRadius: '2px',
@@ -36,7 +36,7 @@ const cardStyle = ({ height }) => (
        
     }
 );
-
+// 10px 10px 5px #aaaaaa
 const dividerStyle = {borderTop: '1px solid black'}
 
 
